@@ -1,6 +1,13 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { useCounterStore } from './stores/counter'
+import { storeToRefs } from 'pinia'
+
+const counter = useCounterStore()
+const { count, doubleCount } = storeToRefs(counter)
+const { increment } = counter
+const { decrement } = counter
 </script>
 
 <template>
@@ -8,6 +15,19 @@ import HelloWorld from './components/HelloWorld.vue'
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
+      <div class="flex flex-col gap-3">
+        count: {{ count }}
+        doubleCount: {{ doubleCount }}
+        <div class="flex gap-3">
+          <button class="rounded-lg bg-green-700 px-2 py-1 text-slate-50" @click="increment">
+            Увеличить "+1"
+          </button>
+          <button class="rounded-lg bg-red-700 px-2 py-1 text-slate-50" @click="decrement">
+            Уменьшить "-1"
+          </button>
+          <Button label="Submit" icon="pi pi-check" iconPos="right" />
+        </div>
+      </div>
       <HelloWorld msg="You did it!" />
       <nav>
         <RouterLink to="/">Home</RouterLink>
