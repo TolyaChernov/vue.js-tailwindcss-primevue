@@ -8,6 +8,7 @@ const counter = useCounterStore()
 const { count, doubleCount } = storeToRefs(counter)
 const { increment } = counter
 const { decrement } = counter
+const { reset } = counter
 </script>
 
 <template>
@@ -16,16 +17,21 @@ const { decrement } = counter
 
     <div class="wrapper">
       <div class="flex flex-col gap-3">
-        count: {{ count }}
-        doubleCount: {{ doubleCount }}
+        count: {{ count }} doubleCount: {{ doubleCount }}
         <div class="flex gap-3">
-          <button class="rounded-lg bg-green-700 px-2 py-1 text-slate-50" @click="increment">
+          <button
+            class="rounded-lg bg-green-700 px-2 py-1 text-slate-50 hover:bg-green-500"
+            @click="increment"
+          >
             Увеличить "+1"
           </button>
-          <button class="rounded-lg bg-red-700 px-2 py-1 text-slate-50" @click="decrement">
+          <button
+            class="rounded-lg bg-red-700 px-2 py-1 text-slate-50 hover:bg-red-500"
+            @click="decrement"
+          >
             Уменьшить "-1"
           </button>
-          <Button label="Submit" icon="pi pi-check" iconPos="right" />
+          <Button label="Сброс" icon="pi pi-check" iconPos="right" @click="reset" />
         </div>
       </div>
       <HelloWorld msg="You did it!" />
@@ -40,6 +46,10 @@ const { decrement } = counter
 </template>
 
 <style scoped>
+.bg-primary {
+  background-color: #df8b0c;
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;
